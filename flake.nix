@@ -11,17 +11,39 @@
   outputs = {
     self,
     nixpkgs,
-    # nixvim,
+    nixvim,
     flake-utils,
     ...
   } @ inputs:
     flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = import nixpkgs {inherit system;};
-        # nixvimLib = nixvim.lib.${system};
-        # nixvim' = nixvim.legacyPackages.${system};
+        nixvimLib = nixvim.lib.${system};
+        nixvim' = nixvim.legacyPackages.${system};
+
+        minimal = nixvim'.makeNixvimWithModule {
+          inherit pkgs;
+          module = import ./package.nix {isMinimal = true;};
+        };
+
+        full = nixvim'.makeNixvimWithModule {
+          inherit pkgs;
+          module = import ./package.nix {isMinimal = false;};
+        };
+
+        fullWsl = nixvim'.makeNixvimWithModule {
+          inherit pkgs;
+          module = import ./package.nix {
+            isMinimal = false;
+            isWsl = true;
+          };
+        };
       in {
         checks = {
+          default = nixvimLib.check.mkTestDerivationFromNixvimModule {
+            inherit pkgs;
+            module = import ./package.nix {};
+          };
           preCommit = inputs.git-hooks.lib.${system}.run {
             src = ./.;
             hooks = {
@@ -31,6 +53,11 @@
               commitizen.enable = true;
             };
           };
+        };
+
+        packages = {
+          default = full;
+          inherit minimal full fullWsl;
         };
 
         devShells.default = pkgs.mkShell {
