@@ -12,29 +12,32 @@
   nixpkgs.overlays = [
     (
       final: prev: {
-        imSelect =
-          if final.stdenv.isDarwin
-          then {
-            command = final.fetchurl {
-              url = "https://github.com/Fr4nk1inCs/macism/releases/download/v1.3.3/macism";
-              sha256 = "sha256-wn7Wlh291PpbSrQLWC/fU654suoPHK4/4O7zQ5Z3ldE=";
-              executable = true;
-            };
-            mode = "com.apple.keylayout.ABC";
-          }
-          else if isWsl
-          then {
-            command = final.fetchurl {
-              url = "https://raw.githubusercontent.com/daipeihust/im-select/master/win-mspy/out/x64/im-select-mspy.exe";
-              sha256 = "sha256-FBRkrJXVemB6EY2PBt8UbrLsaENP4xQGPMzl8UKPrpo=";
-              executable = true;
-            };
-            mode = "英语模式";
-          }
-          else {
-            command = "fcitx5-remote";
-            mode = "keyboard-us";
-          };
+        inherit isWsl;
+        maple-mono = prev.callPackage (
+          {
+            stdenvNoCC,
+            fetchzip,
+          }:
+            stdenvNoCC.mkDerivation {
+              name = "maple-mono-NF-CN";
+              dontConfigue = true;
+              src = fetchzip {
+                url = "https://github.com/subframe7536/maple-font/releases/download/v7.0-beta29/MapleMono-NF-CN.zip";
+                sha256 = "sha256-ybCeft2/i7UY3C/Pew76RiwVEM+vzUtDQuvr4dAkaUY=";
+                stripRoot = false;
+              };
+
+              installPhase = ''
+                mkdir -p $out/share/fonts
+                cp -R $src $out/share/fonts/truetype/
+              '';
+
+              meta = {
+                description = "Maple Mono NF CN";
+                homepage = "https://github.com/subframe7536/maple-font";
+              };
+            }
+        ) {};
         neovim-unwrapped = prev.neovim-unwrapped.overrideAttrs (old: {
           patches =
             old.patches
