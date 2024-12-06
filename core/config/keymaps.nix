@@ -121,13 +121,13 @@
         ])
         [
           {
-            key = "j";
+            key = "d";
             cmd = "+1";
             vcmd = ">+1";
             desc = "Move down";
           }
           {
-            key = "k";
+            key = "u";
             cmd = "-2";
             vcmd = "<-2";
             desc = "Move up";
