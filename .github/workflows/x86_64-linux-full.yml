@@ -18,3 +18,5 @@ jobs:
         with:
           name: nixvim-full.AppImage
           path: /tmp/nixvim.AppImage
+          retention-days: 1
+          compression-level: 0
