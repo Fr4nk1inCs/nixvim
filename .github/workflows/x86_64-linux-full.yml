@@ -1,7 +1,7 @@
 name: "Bundle full nixvim on x86-64 Linux"
 on:
-  push:
-  pull_request:
+  # push:
+  # pull_request:
   workflow_dispatch:
 jobs:
   bundle:
@@ -16,5 +16,5 @@ jobs:
       - run: cp "$(readlink nvim.AppImage)" /tmp/nixvim.AppImage
       - uses: actions/upload-artifact@v4
         with:
-          name: nixvim-minimal.AppImage
+          name: nixvim-full.AppImage
           path: /tmp/nixvim.AppImage

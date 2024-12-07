@@ -1,7 +1,7 @@
 name: "Bundle minimal nixvim on x86-64 Linux"
 on:
-  push:
-  pull_request:
+  # push:
+  # pull_request:
   workflow_dispatch:
 jobs:
   bundle:
