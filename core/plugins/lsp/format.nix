@@ -9,10 +9,11 @@ _: {
       event = ["BufWritePre"];
       callback.__raw = ''
         function(event)
-          if vim.b[event.buf].autoformat == nil then
-            vim.b[event.buf].autoformat = vim.g.autoformat
+          if vim.g.autoformat == nil then
+            vim.g.autoformat = true
           end
-          if vim.b[event.buf].autoformat then
+          local format = vim.b[event.buf].autoformat ~= nil and vim.b[event.buf].autoformat or vim.g.autoformat
+          if format then
             vim.lsp.buf.format({ bufnr = event.buf, timeout_ms = 5000 })
           end
         end
@@ -39,36 +40,31 @@ _: {
 
   extraConfigLuaPost = ''
     do
-      local function toggle_format(buf)
+      local function toggle_format(bufonly)
         return Snacks.toggle({
-          name = "autoformat (" .. (buf and "buffer" or "global") .. ")",
+          name = "autoformat (" .. (bufonly and "buffer" or "global") .. ")",
           get = function()
-            if not buf then
-              return vim.g.autoformat == nil or vim.g.autoformat
-            end
-            if vim.b[buf].autoformat == nil then
-              vim.b[buf].autoformat = vim.g.autoformat
+            local buf = vim.api.nvim_get_current_buf()
+            if not bufonly or vim.b[buf].autoformat == nil then
+              return vim.g.autoformat
             end
             return vim.b[buf].autoformat
           end,
           set = function(state)
-            if enable == nil then
-              enable = true
-            end
-            if buf then
+            local buf = vim.api.nvim_get_current_buf()
+            if bufonly then
               vim.b[buf].autoformat = state
             else
               vim.g.autoformat = state
               vim.b[buf].autoformat = nil
             end
 
-            buf = buf or vim.api.nvim_get_current_buf()
-            local global = vim.g.autoformat == nil or vim.g.autoformat
-            local buffer = vim.b[buf].autoformat == nil and global or vim.b[buf].autoformat
+            local global = vim.g.autoformat
+            local buffer = state
 
             local lines = {
               "# Autoformat Status",
-              "- [" .. (global and "x" or " ") .. "]Global: " .. (global and "**Enabled**" or "**Disabled**"),
+              "- [" .. (global and "x" or " ") .. "] Global: " .. (global and "**Enabled**" or "**Disabled**"),
               "- [" .. (buffer and "x" or " ") .. "] Buffer: " .. (buffer and "**Enabled**" or "**Disabled**"),
             }
 
@@ -80,8 +76,8 @@ _: {
         })
       end
 
-      toggle_format():map("<leader>uF")
-      toggle_format(vim.api.nvim_get_current_buf()):map("<leader>uf")
+      toggle_format(false):map("<leader>uF")
+      toggle_format(true):map("<leader>uf")
     end
   '';
 }
