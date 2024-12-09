@@ -7,6 +7,7 @@
     treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
       c
       cpp
+      cuda
     ];
     clangd-extensions = {
       enable = true;
