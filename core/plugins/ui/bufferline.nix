@@ -9,52 +9,52 @@ _: {
         keys = [
           {
             __unkeyed-1 = "<leader>bp";
-            __unkeyed-2 = "TogglePin";
+            __unkeyed-2 = "<cmd>BufferLineTogglePin<cr>";
             desc = "Toggle pin";
           }
           {
             __unkeyed-1 = "<leader>bP";
-            __unkeyed-2 = "GroupClose ungrouped";
+            __unkeyed-2 = "<cmd>BufferLineGroupClose ungrouped<cr>";
             desc = "Close all unpinned buffers";
           }
           {
             __unkeyed-1 = "<leader>bl";
-            __unkeyed-2 = "CloseLeft";
+            __unkeyed-2 = "<cmd>BufferLineCloseLeft<cr>";
             desc = "Close buffers to the left";
           }
           {
             __unkeyed-1 = "<leader>br";
-            __unkeyed-2 = "CloseRight";
+            __unkeyed-2 = "<cmd>BufferLineCloseRight<cr>";
             desc = "Close buffers to the right";
           }
           {
             __unkeyed-1 = "<s-h>";
-            __unkeyed-2 = "CyclePrev";
+            __unkeyed-2 = "<cmd>BufferLineCyclePrev<cr>";
             desc = "Previous buffer";
           }
           {
             __unkeyed-1 = "<s-l>";
-            __unkeyed-2 = "CycleNext";
+            __unkeyed-2 = "<cmd>BufferLineCycleNext<cr>";
             desc = "Next buffer";
           }
           {
             __unkeyed-1 = "[b";
-            __unkeyed-2 = "CyclePrev";
+            __unkeyed-2 = "<cmd>BufferLineCyclePrev<cr>";
             desc = "Previous buffer";
           }
           {
             __unkeyed-1 = "]b";
-            __unkeyed-2 = "CycleNext";
+            __unkeyed-2 = "<cmd>BufferLineCycleNext<cr>";
             desc = "Next buffer";
           }
           {
             __unkeyed-1 = "[B";
-            __unkeyed-2 = "MovePrev";
+            __unkeyed-2 = "<cmd>BufferLineMovePrev<cr>";
             desc = "Move buffer to previous";
           }
           {
             __unkeyed-1 = "]B";
-            __unkeyed-2 = "MoveNext";
+            __unkeyed-2 = "<cmd>BufferLineMoveNext<cr>";
             desc = "Move buffer to next";
           }
         ];
