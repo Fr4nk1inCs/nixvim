@@ -8,7 +8,5 @@
     ./indent.nix
     ./noice.nix
     ./startup.nix
-    ./colorcolumn.nix
-    ./dropbar.nix
   ];
 }
