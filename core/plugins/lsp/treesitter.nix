@@ -3,6 +3,15 @@
     treesitter = {
       enable = true;
 
+      lazyLoad = {
+        enable = true;
+        settings = {
+          lazy.__raw = "vim.fn.argc(-1) == 0";
+          event = ["BufReadPost" "BufNewFile" "BufWritePre" "DeferredUIEnter"];
+          cmd = ["TSUpdateSync" "TSUpdate" "TSInstall"];
+        };
+      };
+
       folding = true;
       nixvimInjections = true;
 

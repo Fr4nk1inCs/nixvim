@@ -54,6 +54,11 @@ in {
       enable = true;
       autoEnableSources = true;
 
+      lazyLoad = {
+        enable = true;
+        settings.event = "DeferredUIEnter";
+      };
+
       settings = {
         completion.completeopt = "menu,menuone,noinsert,noselect";
         preselect = "cmp.PreselectMode.None";

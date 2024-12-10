@@ -1,6 +1,10 @@
 _: {
   plugins.smartcolumn = {
     enable = true;
+    lazyLoad = {
+      enable = true;
+      settings.event = "DeferredUIEnter";
+    };
     settings = {
       disabled_filetypes = [
         "help"

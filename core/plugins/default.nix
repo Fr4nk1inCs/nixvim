@@ -5,5 +5,6 @@ _: {
     ./langs
     ./lsp
     ./ui
+    ./lazy.nix
   ];
 }

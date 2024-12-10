@@ -3,6 +3,8 @@ _: {
     copilot-lua = {
       enable = true;
 
+      # TODO: Wait for nixvim team to support lazy loading for this plugin
+
       filetypes = {
         markdown = true;
         help = true;

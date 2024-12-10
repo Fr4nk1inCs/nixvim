@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   actions = func: {__raw = ''require("fzf-lua.actions").${func}'';};
-  UISelect = ''
+  UISelect.__raw = ''
     function(fzf_opts, items)
       return vim.tbl_deep_extend("force", fzf_opts, {
         prompt = " ",
@@ -73,6 +73,204 @@ in {
     fzf-lua = {
       enable = true;
 
+      lazyLoad = {
+        enable = true;
+        settings = {
+          cmd = "FzfLua";
+          keys = [
+            {
+              __unkeyed-1 = "<leader>,";
+              __unkeyed-2 = "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>";
+              desc = "Switch buffer";
+            }
+            {
+              __unkeyed-1 = "<leader>:";
+              __unkeyed-2 = "<cmd>FzfLua command_history<cr>";
+              desc = "Command history";
+            }
+            {
+              __unkeyed-1 = "<leader>fb";
+              __unkeyed-2 = "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>";
+              desc = "Switch buffer";
+            }
+            {
+              __unkeyed-1 = "<leader>fg";
+              __unkeyed-2 = "<cmd>FzfLua git_files<cr>";
+              desc = "Find files (git-files)";
+            }
+            {
+              __unkeyed-1 = "<leader>fr";
+              __unkeyed-2 = "<cmd>FzfLua oldfiles<cr>";
+              desc = "Recent files";
+            }
+            {
+              __unkeyed-1 = "<leader>gc";
+              __unkeyed-2 = "<cmd>FzfLua git_commits<cr>";
+              desc = "Git commits";
+            }
+            {
+              __unkeyed-1 = "<leader>gs";
+              __unkeyed-2 = "<cmd>FzfLua git_status<cr>";
+              desc = "Git status";
+            }
+            {
+              __unkeyed-1 = "<leader>s\"";
+              __unkeyed-2 = "<cmd>FzfLua registers<cr>";
+              desc = "Registers";
+            }
+            {
+              __unkeyed-1 = "<leader>sa";
+              __unkeyed-2 = "<cmd>FzfLua autocmds<cr>";
+              desc = "Autocommands";
+            }
+            {
+              __unkeyed-1 = "<leader>sb";
+              __unkeyed-2 = "<cmd>FzfLua grep_curbuf<cr>";
+              desc = "Grep buffer";
+            }
+            {
+              __unkeyed-1 = "<leader>sc";
+              __unkeyed-2 = "<cmd>FzfLua command_history<cr>";
+              desc = "Command history";
+            }
+            {
+              __unkeyed-1 = "<leader>sC";
+              __unkeyed-2 = "<cmd>FzfLua commands<cr>";
+              desc = "Commands";
+            }
+            {
+              __unkeyed-1 = "<leader>sd";
+              __unkeyed-2 = "<cmd>FzfLua diagnostics_document<cr>";
+              desc = "Document diagnostics";
+            }
+            {
+              __unkeyed-1 = "<leader>sD";
+              __unkeyed-2 = "<cmd>FzfLua diagnostics_workspace<cr>";
+              desc = "Workspace diagnostics";
+            }
+            {
+              __unkeyed-1 = "<leader>sh";
+              __unkeyed-2 = "<cmd>FzfLua help_tags<cr>";
+              desc = "Help pages";
+            }
+            {
+              __unkeyed-1 = "<leader>sH";
+              __unkeyed-2 = "<cmd>FzfLua highlights<cr>";
+              desc = "Search highlights";
+            }
+            {
+              __unkeyed-1 = "<leader>sj";
+              __unkeyed-2 = "<cmd>FzfLua jumps<cr>";
+              desc = "Jumplist";
+            }
+            {
+              __unkeyed-1 = "<leader>sk";
+              __unkeyed-2 = "<cmd>FzfLua keymaps<cr>";
+              desc = "Keymaps";
+            }
+            {
+              __unkeyed-1 = "<leader>sl";
+              __unkeyed-2 = "<cmd>FzfLua loclist<cr>";
+              desc = "Loclist";
+            }
+            {
+              __unkeyed-1 = "<leader>sm";
+              __unkeyed-2 = "<cmd>FzfLua marks<cr>";
+              desc = "Jump to marks";
+            }
+            {
+              __unkeyed-1 = "<leader>sM";
+              __unkeyed-2 = "<cmd>FzfLua man_pages<cr>";
+              desc = "Man pages";
+            }
+            {
+              __unkeyed-1 = "<leader>sR";
+              __unkeyed-2 = "<cmd>FzfLua resume<cr>";
+              desc = "Resume FZF";
+            }
+            {
+              __unkeyed-1 = "<leader>sq";
+              __unkeyed-2 = "<cmd>FzfLua quickfix<cr>";
+              desc = "Quickfix list";
+            }
+            {
+              __unkeyed-1 = "<leader>ss";
+              __unkeyed-2 = "<cmd>FzfLua lsp_document_symbols<cr>";
+              desc = "Document symbols";
+            }
+            {
+              __unkeyed-1 = "<leader>sS";
+              __unkeyed-2 = "<cmd>FzfLua lsp_workspace_symbols<cr>";
+              desc = "Workspace symbols";
+            }
+            {
+              __unkeyed-1 = "<leader>uC";
+              __unkeyed-2 = "<cmd>FzfLua colorschemes<cr>";
+              desc = "Colorschemes";
+            }
+            {
+              __unkeyed-1 = "<leader>/";
+              __unkeyed-2 = openInRoot "live_grep";
+              desc = "Live grep (root)";
+            }
+            {
+              __unkeyed-1 = "<leader><space>";
+              __unkeyed-2 = openInRoot "files";
+              desc = "Find files (root)";
+            }
+            {
+              __unkeyed-1 = "<leader>ff";
+              __unkeyed-2 = openInRoot "files";
+              desc = "Find files (root)";
+            }
+            {
+              __unkeyed-1 = "<leader>fF";
+              __unkeyed-2 = openInCwd "files";
+              desc = "Find files (cwd)";
+            }
+            {
+              __unkeyed-1 = "<leader>fR";
+              __unkeyed-2.__raw = ''
+                  function() require("fzf-lua").oldfiles({ cwd = vim.uv.cwd() })
+                end'';
+              desc = "Recent files (cwd)";
+            }
+            {
+              __unkeyed-1 = "<leader>sg";
+              __unkeyed-2 = openInRoot "live_grep";
+              desc = "Live grep (root)";
+            }
+            {
+              __unkeyed-1 = "<leader>sG";
+              __unkeyed-2 = openInCwd "live_grep";
+              desc = "Live grep (cwd)";
+            }
+            {
+              __unkeyed-1 = "<leader>sw";
+              __unkeyed-2 = openInRoot "grep_cword";
+              desc = "Grep word (root)";
+            }
+            {
+              __unkeyed-1 = "<leader>sW";
+              __unkeyed-2 = openInCwd "grep_cword";
+              desc = "Grep word (cwd)";
+            }
+            {
+              __unkeyed-1 = "<leader>sw";
+              __unkeyed-2 = openInRoot "grep_visual";
+              mode = "v";
+              desc = "Grep selection (root)";
+            }
+            {
+              __unkeyed-1 = "<leader>sW";
+              __unkeyed-2 = openInCwd "grep_visual";
+              mode = "v";
+              desc = "Grep selection (cwd)";
+            }
+          ];
+        };
+      };
+
       profile.__raw = ''"default-title"'';
 
       settings = {
@@ -132,199 +330,6 @@ in {
           };
         };
       };
-
-      keymaps = {
-        "<leader>," = {
-          action = "buffers";
-          options = {
-            desc = "Switch buffer";
-            silent = true;
-          };
-          settings = {
-            sort_mru = true;
-            sort_lastused = true;
-          };
-        };
-        "<leader>:" = {
-          action = "command_history";
-          options = {
-            desc = "Command history";
-            silent = true;
-          };
-        };
-        "<leader>fb" = {
-          action = "buffers";
-          options = {
-            desc = "Switch buffer";
-            silent = true;
-          };
-          settings = {
-            sort_mru = true;
-            sort_lastused = true;
-          };
-        };
-        "<leader>fg" = {
-          action = "git_files";
-          options = {
-            desc = "Find files (git-files)";
-            silent = true;
-          };
-        };
-        "<leader>fr" = {
-          action = "oldfiles";
-          options = {
-            desc = "Recent files";
-            silent = true;
-          };
-        };
-        "<leader>gc" = {
-          action = "git_commits";
-          options = {
-            desc = "Git commits";
-            silent = true;
-          };
-        };
-        "<leader>gs" = {
-          action = "git_status";
-          options = {
-            desc = "Git status";
-            silent = true;
-          };
-        };
-        "<leader>s\"" = {
-          action = "registers";
-          options = {
-            desc = "Registers";
-            silent = true;
-          };
-        };
-        "<leader>sa" = {
-          action = "autocmds";
-          options = {
-            desc = "Autocommands";
-            silent = true;
-          };
-        };
-        "<leader>sb" = {
-          action = "grep_curbuf";
-          options = {
-            desc = "Grep buffer";
-            silent = true;
-          };
-        };
-        "<leader>sc" = {
-          action = "command_history";
-          options = {
-            desc = "Command history";
-            silent = true;
-          };
-        };
-        "<leader>sC" = {
-          action = "commands";
-          options = {
-            desc = "Commands";
-            silent = true;
-          };
-        };
-        "<leader>sd" = {
-          action = "diagnostics_document";
-          options = {
-            desc = "Document diagnostics";
-            silent = true;
-          };
-        };
-        "<leader>sD" = {
-          action = "diagnostics_workspace";
-          options = {
-            desc = "Workspace diagnostics";
-            silent = true;
-          };
-        };
-        "<leader>sh" = {
-          action = "help_tags";
-          options = {
-            desc = "Help pages";
-            silent = true;
-          };
-        };
-        "<leader>sH" = {
-          action = "highlights";
-          options = {
-            desc = "Search highlights";
-            silent = true;
-          };
-        };
-        "<leader>sj" = {
-          action = "jumps";
-          options = {
-            desc = "Jumplist";
-            silent = true;
-          };
-        };
-        "<leader>sk" = {
-          action = "keymaps";
-          options = {
-            desc = "Keymaps";
-            silent = true;
-          };
-        };
-        "<leader>sl" = {
-          action = "loclist";
-          options = {
-            desc = "Loclist";
-            silent = true;
-          };
-        };
-        "<leader>sm" = {
-          action = "marks";
-          options = {
-            desc = "Jump to marks";
-            silent = true;
-          };
-        };
-        "<leader>sM" = {
-          action = "man_pages";
-          options = {
-            desc = "Man pages";
-            silent = true;
-          };
-        };
-        "<leader>sR" = {
-          action = "resume";
-          options = {
-            desc = "Resume FZF";
-            silent = true;
-          };
-        };
-        "<leader>sq" = {
-          action = "quickfix";
-          options = {
-            desc = "Quickfix list";
-            silent = true;
-          };
-        };
-        "<leader>ss" = {
-          action = "lsp_document_symbols";
-          options = {
-            desc = "Document symbols";
-            silent = true;
-          };
-        };
-        "<leader>sS" = {
-          action = "lsp_workspace_symbols";
-          options = {
-            desc = "Workspace symbols";
-            silent = true;
-          };
-        };
-        "<leader>uC" = {
-          action = "colorschemes";
-          options = {
-            desc = "Colorschemes";
-            silent = true;
-          };
-        };
-      };
     };
 
     lsp.keymaps.extra = [
@@ -362,69 +367,15 @@ in {
     ];
   };
 
-  keymaps = [
-    (map {
-      key = "<leader>/";
-      action = openInRoot "live_grep";
-      desc = "Live grep (root)";
-    })
-    (map {
-      key = "<leader><space>";
-      action = openInRoot "files";
-      desc = "Find files (root)";
-    })
-    (map {
-      key = "<leader>ff";
-      action = openInRoot "files";
-      desc = "Find files (root)";
-    })
-    (map {
-      key = "<leader>fF";
-      action = openInCwd "files";
-      desc = "Find files (cwd)";
-    })
-    (map {
-      key = "<leader>fR";
-      action.__raw = ''function() require("fzf-lua").oldfiles({ cwd = vim.uv.cwd() }) end'';
-      desc = "Recent files (cwd)";
-    })
-    (map {
-      key = "<leader>sg";
-      action = openInRoot "live_grep";
-      desc = "Live grep (root)";
-    })
-    (map {
-      key = "<leader>sG";
-      action = openInCwd "live_grep";
-      desc = "Live grep (cwd)";
-    })
-    (map {
-      key = "<leader>sw";
-      action = openInRoot "grep_cword";
-      desc = "Grep word (root)";
-    })
-    (map {
-      key = "<leader>sW";
-      action = openInCwd "grep_cword";
-      desc = "Grep word (cwd)";
-    })
-    (map {
-      key = "<leader>sw";
-      mode = "v";
-      action = openInRoot "grep_visual";
-      desc = "Grep selection (root)";
-    })
-    (map {
-      key = "<leader>sW";
-      mode = "v";
-      action = openInCwd "grep_visual";
-      desc = "Grep selection (cwd)";
-    })
-  ];
-
   extraConfigLuaPost = ''
     do
-      require("fzf-lua").register_ui_select(${UISelect})
+      -- lazy load fzf-lua for ui.select
+      local old_uiselect = vim.ui.select
+      vim.ui.select = function(...)
+        require("lz.n").trigger_load("fzf-lua")
+        require("fzf-lua").register_ui_select(${UISelect.__raw})
+        return vim.ui.select(...)
+      end
     end
   '';
 }

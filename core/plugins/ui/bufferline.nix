@@ -1,15 +1,66 @@
-_: let
-  bufferLineKeymap = builtins.map (item: {
-    inherit (item) key;
-    action = "<cmd>BufferLine${item.action}<cr>";
-    options = {
-      inherit (item) desc;
-      silent = true;
-    };
-  });
-in {
+_: {
   plugins.bufferline = {
     enable = true;
+
+    lazyLoad = {
+      enable = true;
+      settings = {
+        event = ["BufReadPost" "BufNewFile" "BufWritePre"];
+        keys = [
+          {
+            __unkeyed-1 = "<leader>bp";
+            __unkeyed-2 = "TogglePin";
+            desc = "Toggle pin";
+          }
+          {
+            __unkeyed-1 = "<leader>bP";
+            __unkeyed-2 = "GroupClose ungrouped";
+            desc = "Close all unpinned buffers";
+          }
+          {
+            __unkeyed-1 = "<leader>bl";
+            __unkeyed-2 = "CloseLeft";
+            desc = "Close buffers to the left";
+          }
+          {
+            __unkeyed-1 = "<leader>br";
+            __unkeyed-2 = "CloseRight";
+            desc = "Close buffers to the right";
+          }
+          {
+            __unkeyed-1 = "<s-h>";
+            __unkeyed-2 = "CyclePrev";
+            desc = "Previous buffer";
+          }
+          {
+            __unkeyed-1 = "<s-l>";
+            __unkeyed-2 = "CycleNext";
+            desc = "Next buffer";
+          }
+          {
+            __unkeyed-1 = "[b";
+            __unkeyed-2 = "CyclePrev";
+            desc = "Previous buffer";
+          }
+          {
+            __unkeyed-1 = "]b";
+            __unkeyed-2 = "CycleNext";
+            desc = "Next buffer";
+          }
+          {
+            __unkeyed-1 = "[B";
+            __unkeyed-2 = "MovePrev";
+            desc = "Move buffer to previous";
+          }
+          {
+            __unkeyed-1 = "]B";
+            __unkeyed-2 = "MoveNext";
+            desc = "Move buffer to next";
+          }
+        ];
+      };
+    };
+
     settings = {
       options = {
         close_command.__raw = "function(n) Snacks.bufdelete.delete(n) end";
@@ -38,57 +89,4 @@ in {
       };
     };
   };
-
-  keymaps = bufferLineKeymap [
-    {
-      key = "<leader>bp";
-      action = "TogglePin";
-      desc = "Toggle pin";
-    }
-    {
-      key = "<leader>bP";
-      action = "GroupClose ungrouped";
-      desc = "Close all unpinned buffers";
-    }
-    {
-      key = "<leader>bl";
-      action = "CloseLeft";
-      desc = "Close buffers to the left";
-    }
-    {
-      key = "<leader>br";
-      action = "CloseRight";
-      desc = "Close buffers to the right";
-    }
-    {
-      key = "<s-h>";
-      action = "CyclePrev";
-      desc = "Previous buffer";
-    }
-    {
-      key = "<s-l>";
-      action = "CycleNext";
-      desc = "Next buffer";
-    }
-    {
-      key = "[b";
-      action = "CyclePrev";
-      desc = "Previous buffer";
-    }
-    {
-      key = "]b";
-      action = "CycleNext";
-      desc = "Next buffer";
-    }
-    {
-      key = "[B";
-      action = "MovePrev";
-      desc = "Move buffer to previous";
-    }
-    {
-      key = "]B";
-      action = "MoveNext";
-      desc = "Move buffer to next";
-    }
-  ];
 }

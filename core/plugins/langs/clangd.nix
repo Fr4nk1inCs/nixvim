@@ -11,6 +11,9 @@
     ];
     clangd-extensions = {
       enable = true;
+
+      # TODO: Wait for nixvim team to support lazy loading for this plugin
+
       ast = {
         roleIcons = {
           type = "";

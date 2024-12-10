@@ -1,27 +1,77 @@
-_: let
-  views = builtins.listToAttrs (
-    builtins.map (
-      item: {
-        name = item;
-        value = {
-          win_options.winblend = 0;
-        };
-      }
-    )
-    ["popup" "notify" "cmdline_popup" "popupmenu" "mini"]
-  );
-  noiceNotifyKeymap = builtins.map (item: {
-    key = "<leader>sn${item.key}";
-    action.__raw = ''function() require("noice").cmd("${item.arg}") end'';
-    options = {
-      inherit (item) desc;
-      silent = true;
-    };
-  });
-in {
+_: {
   plugins = {
     noice = {
       enable = true;
+
+      lazyLoad = {
+        enable = true;
+        settings = {
+          event = "DeferredUIEnter";
+          keys = [
+            {
+              __unkeyed-1 = "<leader>snl";
+              __unkeyed-2.__raw = ''function() require("noice").cmd("last") end'';
+              desc = "Last (noice) message";
+            }
+            {
+              __unkeyed-1 = "<leader>snh";
+              __unkeyed-2.__raw = ''function() require("noice").cmd("history") end'';
+              desc = "History (noice) messages";
+            }
+            {
+              __unkeyed-1 = "<leader>sna";
+              __unkeyed-2.__raw = ''function() require("noice").cmd("all") end'';
+              desc = "All (noice) messages";
+            }
+            {
+              __unkeyed-1 = "<leader>snd";
+              __unkeyed-2.__raw = ''function() require("noice").cmd("dismiss") end'';
+              desc = "Dismiss (noice) messages";
+            }
+            {
+              __unkeyed-1 = "<leader>snt";
+              __unkeyed-2.__raw = ''function() require("noice").cmd("pick") end'';
+              desc = "Pick (noice) messages (FzfLua)";
+            }
+            {
+              __unkeyed-1 = "<s-enter>";
+              __unkeyed-2.__raw = ''
+                function()
+                  require("noice").redirect(vim.fn.getcmdline())
+                end
+              '';
+              mode = "c";
+              desc = "Redirect cmdline";
+            }
+            {
+              __unkeyed-1 = "<c-f>";
+              __unkeyed-2.__raw = ''
+                function()
+                  if not require("noice.lsp").scroll(4) then
+                    return "<c-f>"
+                  end
+                end
+              '';
+              mode = ["i" "n" "s"];
+              expr = true;
+              desc = "Scroll forward";
+            }
+            {
+              __unkeyed-1 = "<c-b>";
+              __unkeyed-2.__raw = ''
+                function()
+                  if not require("noice.lsp").scroll(-4) then
+                    return "<c-b>"
+                  end
+                end
+              '';
+              mode = ["i" "n" "s"];
+              expr = true;
+              desc = "Scroll backward";
+            }
+          ];
+        };
+      };
 
       settings = {
         lsp = {
@@ -36,7 +86,17 @@ in {
           };
         };
 
-        inherit views;
+        views = builtins.listToAttrs (
+          builtins.map (
+            item: {
+              name = item;
+              value = {
+                win_options.winblend = 0;
+              };
+            }
+          )
+          ["popup" "notify" "cmdline_popup" "popupmenu" "mini"]
+        );
 
         routes = [
           {
@@ -74,80 +134,4 @@ in {
       }
     ];
   };
-
-  keymaps =
-    [
-      {
-        key = "<s-enter>";
-        action.__raw = ''
-          function()
-            require("noice").redirect(vim.fn.getcmdline())
-          end
-        '';
-        mode = "c";
-        options = {
-          desc = "Redirect cmdline";
-          silent = true;
-        };
-      }
-      {
-        key = "<c-f>";
-        mode = ["i" "n" "s"];
-        action.__raw = ''
-          function()
-            if not require("noice.lsp").scroll(4) then
-              return "<c-f>"
-            end
-          end
-        '';
-        options = {
-          expr = true;
-          silent = true;
-          desc = "Scroll forward";
-        };
-      }
-      {
-        key = "<c-b>";
-        mode = ["i" "n" "s"];
-        action.__raw = ''
-          function()
-            if not require("noice.lsp").scroll(-4) then
-              return "<c-b>"
-            end
-          end
-        '';
-        options = {
-          expr = true;
-          silent = true;
-          desc = "Scroll backward";
-        };
-      }
-    ]
-    ++ noiceNotifyKeymap [
-      {
-        key = "l";
-        arg = "last";
-        desc = "Last (noice) message";
-      }
-      {
-        key = "h";
-        arg = "history";
-        desc = "History (noice) messages";
-      }
-      {
-        key = "a";
-        arg = "all";
-        desc = "All (noice) messages";
-      }
-      {
-        key = "d";
-        arg = "dismiss";
-        desc = "Dismiss (noice) messages";
-      }
-      {
-        key = "t";
-        arg = "pick";
-        desc = "Pick (noice) messages (FzfLua)";
-      }
-    ];
 }

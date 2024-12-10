@@ -1,6 +1,12 @@
 _: {
   plugins.colorizer = {
     enable = true;
+
+    lazyLoad = {
+      enable = true;
+      settings.event = "DeferredUIEnter";
+    };
+
     settings = {
       user_default_options = {
         RGB = true;

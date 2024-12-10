@@ -29,6 +29,8 @@
   plugins.rainbow-delimiters = {
     enable = true;
 
+    # TODO: Wait for nixvim team to support lazy loading for this plugin
+
     query = {
       default = "rainbow-delimiters";
       lua = "rainbow-blocks";

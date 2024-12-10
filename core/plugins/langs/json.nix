@@ -14,6 +14,8 @@
         end
       '';
     };
+
+    # TODO: Wait for nixvim team to support lazy loading for this plugin
     schemastore.enable = true;
   };
 }

@@ -11,6 +11,8 @@ in {
   plugins.dap = {
     enable = true;
 
+    # TODO: Wait for nixvim team to support lazy loading for this plugin
+
     extensions = {
       dap-ui.enable = true;
       dap-virtual-text.enable = true;

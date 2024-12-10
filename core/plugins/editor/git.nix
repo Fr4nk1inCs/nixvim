@@ -2,6 +2,12 @@
   plugins = {
     gitsigns = {
       enable = true;
+
+      lazyLoad = {
+        enable = true;
+        settings.event = ["BufReadPost" "BufNewFile" "BufWritePre"];
+      };
+
       settings = {
         signs = {
           add.text = "▎";

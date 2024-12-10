@@ -5,6 +5,8 @@ in {
     enable = true;
     inlayHints = true;
 
+    # TODO: Wait for nixvim team to support lazy loading for this plugin
+
     keymaps = {
       lspBuf = {
         K = {

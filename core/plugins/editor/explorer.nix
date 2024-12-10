@@ -78,34 +78,12 @@ _: {
         silent = true;
       };
     }
-    {
-      key = "<leader>y";
-      action = "<cmd>Yazi toggle<cr>";
-      options = {
-        desc = "Resume last yazi session";
-        silent = true;
-      };
-    }
-    {
-      key = "<leader>fy";
-      action = "<cmd>Yazi cwd<cr>";
-      options = {
-        desc = "Open yazi at current working directory";
-        silent = true;
-      };
-    }
-    {
-      key = "<leader>fY";
-      action = "<cmd>Yazi<cr>";
-      options = {
-        desc = "Open yazi at currtn buffer";
-        silent = true;
-      };
-    }
   ];
 
   plugins.neo-tree = {
     enable = true;
+
+    # TODO: Wait for nixvim team to support lazy loading for this plugin
 
     popupBorderStyle = "rounded";
 
@@ -183,6 +161,31 @@ _: {
 
   plugins.yazi = {
     enable = true;
+
+    lazyLoad = {
+      enable = true;
+      settings = {
+        event = "DeferredUIEnter";
+        keys = [
+          {
+            __unkeyed-1 = "<leader>y";
+            __unkeyed-2 = "<cmd>Yazi toggle<cr>";
+            desc = "Resume last yazi session";
+          }
+          {
+            __unkeyed-1 = "<leader>fy";
+            __unkeyed-2 = "<cmd>Yazi cwd<cr>";
+            desc = "Open yazi at current working directory";
+          }
+          {
+            __unkeyed-1 = "<leader>fY";
+            __unkeyed-2 = "<cmd>Yazi<cr>";
+            desc = "Open yazi at currtn buffer";
+          }
+        ];
+      };
+    };
+
     settings.keymaps = {
       open_file_in_horizontal_split = "<c-h>";
       change_working_directory = "<c-d>";

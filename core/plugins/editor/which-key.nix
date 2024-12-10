@@ -9,6 +9,33 @@ _: let
 in {
   plugins.which-key = {
     enable = true;
+    lazyLoad = {
+      enable = true;
+      settings = {
+        event = "DeferredUIEnter";
+        keys = [
+          {
+            __unkeyed-1 = "<leader>?";
+            __unkeyed-2.__raw = ''
+              function()
+                require('which-key').show({ global = false })
+              end
+            '';
+            desc = "Buffer keymaps (which-key)";
+          }
+          {
+            __unkeyed-1 = "<c-w><space>";
+            __unkeyed-2.__raw = ''
+              function()
+                require('which-key').show({ keys = "<c-w>", loop = true })
+              end
+            '';
+            desc = "Window hydra mode (which-key)";
+          }
+        ];
+      };
+    };
+
     settings = {
       win.border = "rounded";
 
@@ -59,33 +86,4 @@ in {
       ];
     };
   };
-
-  keymaps = [
-    {
-      key = "<leader>?";
-      mode = "n";
-      action.__raw = ''
-        function()
-          require('which-key').show({ global = false })
-        end
-      '';
-      options = {
-        desc = "Buffer keymaps (which-key)";
-        silent = true;
-      };
-    }
-    {
-      key = "<c-w><space>";
-      mode = "n";
-      action.__raw = ''
-        function()
-          require('which-key').show({ keys = "<c-w>", loop = true })
-        end
-      '';
-      options = {
-        desc = "Window hydra mode (which-key)";
-        silent = true;
-      };
-    }
-  ];
 }

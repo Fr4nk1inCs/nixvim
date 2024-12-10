@@ -1,13 +1,4 @@
 _: let
-  map = keymap: {
-    inherit (keymap) key;
-    mode = "n";
-    inherit (keymap) action;
-    options = {
-      silent = true;
-      inherit (keymap) desc;
-    };
-  };
   jump = direction: {
     __raw = ''
       function()
@@ -25,6 +16,56 @@ _: let
 in {
   plugins.trouble = {
     enable = true;
+
+    lazyLoad = {
+      enable = true;
+      settings = {
+        cmd = "Trouble";
+        keys = [
+          {
+            __unkeyed-1 = "<leader>xx";
+            __unkeyed-2 = "<cmd>Trouble diagnostics toggle filter.buf=0<cr>";
+            desc = "Buffer diagnostics (Trouble)";
+          }
+          {
+            __unkeyed-1 = "<leader>xX";
+            __unkeyed-2 = "<cmd>Trouble diagnostics toggle<cr>";
+            desc = "Workspace diagnostics (Trouble)";
+          }
+          {
+            __unkeyed-1 = "<leader>cs";
+            __unkeyed-2 = "<cmd>Trouble symbols toggle<cr>";
+            desc = "Symbols (Trouble)";
+          }
+          {
+            __unkeyed-1 = "<leader>cS";
+            __unkeyed-2 = "<cmd>Trouble lsp toggle<cr>";
+            desc = "LSP references/definitions/... (Trouble)";
+          }
+          {
+            __unkeyed-1 = "<leader>xL";
+            __unkeyed-2 = "<cmd>Trouble loclist toggle<cr>";
+            desc = "Location list (Trouble)";
+          }
+          {
+            __unkeyed-1 = "<leader>xQ";
+            __unkeyed-2 = "<cmd>Trouble quickfix toggle<cr>";
+            desc = "Quickfix list (Trouble)";
+          }
+          {
+            __unkeyed-1 = "[q";
+            __unkeyed-2 = jump "prev";
+            desc = "Previous trouble/quickfix item (Trouble)";
+          }
+          {
+            __unkeyed-1 = "]q";
+            __unkeyed-2 = jump "next";
+            desc = "Next trouble/quickfix item (Trouble)";
+          }
+        ];
+      };
+    };
+
     settings.modes.lsp.win.position = "right";
   };
 
@@ -37,56 +78,5 @@ in {
         color = "green";
       };
     }
-  ];
-
-  keymaps = [
-    (map
-      {
-        key = "<leader>xx";
-        action = "<cmd>Trouble diagnostic toggle filter.buf=0<cr>";
-        desc = "Buffer diagnostics (Trouble)";
-      })
-    (map
-      {
-        key = "<leader>xX";
-        action = "<cmd>Trouble diagnostic toggle<cr>";
-        desc = "Workspace diagnostics (Trouble)";
-      })
-    (map
-      {
-        key = "<leader>cs";
-        action = "<cmd>Trouble symbol toggle<cr>";
-        desc = "Symbols (Trouble)";
-      })
-    (map
-      {
-        key = "<leader>cS";
-        action = "<cmd>Trouble lsp toggle<cr>";
-        desc = "LSP references/definitions/... (Trouble)";
-      })
-    (map
-      {
-        key = "<leader>xL";
-        action = "<cmd>Trouble loclist toggle<cr>";
-        desc = "Location list (Trouble)";
-      })
-    (map
-      {
-        key = "<leader>xQ";
-        action = "<cmd>Trouble quickfix toggle<cr>";
-        desc = "Quickfix list (Trouble)";
-      })
-    (map
-      {
-        key = "[q";
-        action = jump "prev";
-        desc = "Previous trouble/quickfix item (Trouble)";
-      })
-    (map
-      {
-        key = "]q";
-        action = jump "next";
-        desc = "Next trouble/quickfix item (Trouble)";
-      })
   ];
 }
