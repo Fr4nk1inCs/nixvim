@@ -7,6 +7,7 @@ _: {
         enable = true;
         settings = {
           event = "DeferredUIEnter";
+          on_require = ["noice"];
           keys = [
             {
               __unkeyed-1 = "<leader>snl";

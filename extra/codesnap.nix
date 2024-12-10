@@ -10,6 +10,7 @@ in {
     lazyLoad = {
       enable = true;
       settings = {
+        on_require = ["codesnap"];
         event = ["BufReadPost" "BufNewFile" "BufWritePre"];
       };
     };

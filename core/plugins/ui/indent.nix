@@ -14,7 +14,10 @@ in {
 
     lazyLoad = {
       enable = true;
-      settings.event = ["BufReadPost" "BufNewFile" "BufEnter" "DeferredUIEnter"];
+      settings = {
+        event = ["BufReadPost" "BufNewFile" "BufEnter" "DeferredUIEnter"];
+        on_require = ["ibl"];
+      };
     };
 
     settings = {

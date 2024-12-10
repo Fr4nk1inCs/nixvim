@@ -5,6 +5,7 @@ _: {
     lazyLoad = {
       enable = true;
       settings = {
+        on_require = ["ltex_extra"];
         ft = ["markdown" "tex" "latex"];
       };
     };

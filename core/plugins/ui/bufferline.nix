@@ -6,6 +6,7 @@ _: {
       enable = true;
       settings = {
         event = ["BufReadPost" "BufNewFile" "BufWritePre"];
+        on_require = ["bufferline"];
         keys = [
           {
             __unkeyed-1 = "<leader>bp";

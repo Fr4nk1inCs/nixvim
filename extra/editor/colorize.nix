@@ -4,7 +4,10 @@ _: {
 
     lazyLoad = {
       enable = true;
-      settings.event = "DeferredUIEnter";
+      settings = {
+        event = "DeferredUIEnter";
+        on_require = ["colorizer"];
+      };
     };
 
     settings = {

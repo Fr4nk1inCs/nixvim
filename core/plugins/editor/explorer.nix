@@ -166,6 +166,7 @@ _: {
       enable = true;
       settings = {
         event = "DeferredUIEnter";
+        on_require = ["yazi"];
         keys = [
           {
             __unkeyed-1 = "<leader>y";

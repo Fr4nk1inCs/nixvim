@@ -8,6 +8,7 @@
       lazyLoad = {
         enable = true;
         settings = {
+          on_require = ["cmake-tools"];
           ft = ["c" "cpp" "cuda" "cmake"];
         };
       };

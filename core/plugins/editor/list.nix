@@ -21,6 +21,7 @@ in {
       enable = true;
       settings = {
         cmd = "Trouble";
+        on_require = ["trouble"];
         keys = [
           {
             __unkeyed-1 = "<leader>xx";

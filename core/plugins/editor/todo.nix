@@ -17,6 +17,7 @@ in {
       enable = true;
       settings = {
         event = ["BufReadPost" "BufNewFile" "BufWritePre"];
+        on_require = ["todo-comments"];
         keys = [
           {
             __unkeyed-1 = "]t";
@@ -52,7 +53,4 @@ in {
       };
     };
   };
-
-  keymaps = [
-  ];
 }

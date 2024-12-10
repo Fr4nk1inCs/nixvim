@@ -78,6 +78,7 @@ in {
         settings = {
           # FIXME: This is a workaround with fzf-lua and lz.n
           # cmd = "FzfLua";
+          on_require = ["fzf-lua"];
           keys = [
             {
               __unkeyed-1 = "<leader>,";

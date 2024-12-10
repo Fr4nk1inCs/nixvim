@@ -7,6 +7,7 @@ in {
       enable = true;
       settings = {
         event = "DeferredUIEnter";
+        on_require = ["flash"];
         keys = [
           {
             __unkeyed-1 = "s";

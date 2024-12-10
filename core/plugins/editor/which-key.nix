@@ -13,6 +13,7 @@ in {
       enable = true;
       settings = {
         event = "DeferredUIEnter";
+        on_require = ["which-key"];
         keys = [
           {
             __unkeyed-1 = "<leader>?";

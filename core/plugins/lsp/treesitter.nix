@@ -7,6 +7,7 @@
         enable = true;
         settings = {
           lazy.__raw = "vim.fn.argc(-1) == 0";
+          on_require = ["nvim-treesitter"];
           event = ["BufReadPost" "BufNewFile" "BufWritePre" "DeferredUIEnter"];
           cmd = ["TSUpdateSync" "TSUpdate" "TSInstall"];
         };

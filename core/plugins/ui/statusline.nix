@@ -6,6 +6,7 @@ _: {
       enable = true;
       settings = {
         event = ["DeferredUIEnter"];
+        on_require = ["lualine"];
       };
     };
 

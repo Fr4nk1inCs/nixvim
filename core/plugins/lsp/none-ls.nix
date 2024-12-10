@@ -3,7 +3,10 @@ _: {
     enable = true;
     lazyLoad = {
       enable = true;
-      settings.event = ["BufReadPost" "BufNewFile" "BufWritePre"];
+      settings = {
+        event = ["BufReadPost" "BufNewFile" "BufWritePre"];
+        on_require = ["null-ls"];
+      };
     };
     settings = {
       border = "rounded";

@@ -18,6 +18,7 @@
       lazyLoad = {
         enable = true;
         settings = {
+          on_require = ["rustaceanvim"];
           ft = ["rust"];
         };
       };

@@ -3,7 +3,10 @@ _: {
     enable = true;
     lazyLoad = {
       enable = true;
-      settings.event = "DeferredUIEnter";
+      settings = {
+        event = "DeferredUIEnter";
+        on_require = ["smartcolumn"];
+      };
     };
     settings = {
       disabled_filetypes = [

@@ -5,7 +5,10 @@
 
       lazyLoad = {
         enable = true;
-        settings.event = ["BufReadPost" "BufNewFile" "BufWritePre"];
+        settings = {
+          event = ["BufReadPost" "BufNewFile" "BufWritePre"];
+          on_require = ["gitsigns"];
+        };
       };
 
       settings = {
