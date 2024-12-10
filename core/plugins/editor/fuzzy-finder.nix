@@ -76,7 +76,8 @@ in {
       lazyLoad = {
         enable = true;
         settings = {
-          cmd = "FzfLua";
+          # FIXME: This is a workaround with fzf-lua and lz.n
+          # cmd = "FzfLua";
           keys = [
             {
               __unkeyed-1 = "<leader>,";
