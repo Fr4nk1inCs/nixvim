@@ -1,29 +1,26 @@
 _: {
-  plugins.nvim-colorizer = {
+  plugins.colorizer = {
     enable = true;
-    userDefaultOptions = {
-      RGB = true;
-      RRGGBB = true;
-      mode = "virtualtext";
+    settings = {
+      user_default_options = {
+        RGB = true;
+        RRGGBB = true;
+        mode = "virtualtext";
+      };
+      filetypes = {
+        __unkeyed-1 = ''["*"]'';
+        css = {
+          css = true;
+        };
+        sass = {
+          css = true;
+          sass.enable = true;
+        };
+        html = {
+          css = true;
+          tailwind = true;
+        };
+      };
     };
-    fileTypes = [
-      {
-        language = ''["*"]'';
-      }
-      {
-        language = "css";
-        css = true;
-      }
-      {
-        language = "sass";
-        css = true;
-        sass.enable = true;
-      }
-      {
-        language = "html";
-        css = true;
-        tailwind = true;
-      }
-    ];
   };
 }
