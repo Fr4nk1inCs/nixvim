@@ -6,6 +6,14 @@
 in {
   plugins.codesnap = {
     enable = true;
+
+    lazyLoad = {
+      enable = true;
+      settings = {
+        event = ["BufReadPost" "BufNewFile" "BufWritePre"];
+      };
+    };
+
     settings = {
       save_path = savePath;
       has_breadcrumbs = true;

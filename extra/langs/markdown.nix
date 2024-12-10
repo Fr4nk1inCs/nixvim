@@ -2,7 +2,8 @@ _: {
   plugins = {
     markview = {
       enable = true;
-
+      # It is not recommended to lazy load this plugin.
+      lazyLoad.enable = false;
       settings = {
         headings = {
           shift_width = 0;

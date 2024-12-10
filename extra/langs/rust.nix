@@ -3,6 +3,9 @@
     treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [rust ron];
     crates-nvim = {
       enable = true;
+
+      # TODO: Wait for nixvim team to support lazy loading for this plugin
+
       extraOptions = {
         completion.cmp.enabled = true;
       };
@@ -11,6 +14,14 @@
     lsp.servers.taplo.enable = true;
     rustaceanvim = {
       enable = true;
+
+      lazyLoad = {
+        enable = true;
+        settings = {
+          ft = ["rust"];
+        };
+      };
+
       settings = {
         server = {
           capabilities = {
