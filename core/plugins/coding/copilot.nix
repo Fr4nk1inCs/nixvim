@@ -21,6 +21,13 @@ _: {
       };
     };
 
+    copilot-chat = {
+      enable = true;
+      settings = {
+        window.border = "rounded";
+      };
+    };
+
     lualine.settings.sections.lualine_x = [
       {
         __unkeyed-1.__raw = ''
