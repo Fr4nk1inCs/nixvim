@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   plugins = {
     treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [rust ron];
-    crates-nvim = {
+    crates = {
       enable = true;
-      extraOptions = {
+      settings = {
         completion.cmp.enabled = true;
       };
     };
