@@ -36,11 +36,12 @@ in {
     enable = true;
     settings.texlab = {
       build = {
-        executable = "xelatex";
+        executable = "latexmk";
         args = [
-          "-shell-escape"
-          "-synctex=1"
+          "-pdf"
+          "-xelatex"
           "-interaction=nonstopmode"
+          "-synctex=1"
           "%f"
         ];
         onSave = true;
