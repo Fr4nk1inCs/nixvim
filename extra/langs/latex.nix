@@ -3,10 +3,9 @@
   forwardSearch =
     if pkgs.stdenv.isDarwin
     then {
-      executable = "open";
+      executable = "${pkgs.skimpdf}/Applications/Skim.app/Contents/SharedSupport/displayline";
       args = [
-        "-a"
-        "/Applications/Skim.app"
+        "-g"
         "-r"
         "%l"
         "%p"
