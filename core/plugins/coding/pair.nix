@@ -6,11 +6,6 @@
   extraConfigLua = ''
     require('ultimate-autopair').setup({
       {'$', '$', ft = { "typst" }, space = true, newline = true},
-      extensions = {
-        filetype = {
-            nft = { "tex", "plaintex", "latex" },
-        },
-      },
       tabout = {
         enable = true,
         map = "<tab>",
