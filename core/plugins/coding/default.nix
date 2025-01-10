@@ -1,6 +1,6 @@
 _: {
   imports = [
-    ./cmp.nix
+    ./completion.nix
     ./comment.nix
     ./pair.nix
     ./copilot.nix
