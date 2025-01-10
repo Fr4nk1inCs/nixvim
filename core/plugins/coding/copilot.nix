@@ -3,20 +3,22 @@ _: {
     copilot-lua = {
       enable = true;
 
-      filetypes = {
-        markdown = true;
-        help = true;
-      };
+      settings = {
+        filetypes = {
+          markdown = true;
+          help = true;
+        };
 
-      suggestion = {
-        enabled = true;
-        autoTrigger = true;
-        keymap = {
-          accept = "<c-a>";
-          prev = "<c-[>";
-          next = "<c-]>";
+        suggestion = {
+          enabled = true;
+          autoTrigger = true;
+          keymap = {
+            accept = "<c-a>";
+            prev = "<c-[>";
+            next = "<c-]>";
 
-          dismiss = "<c-q>";
+            dismiss = "<c-q>";
+          };
         };
       };
     };
