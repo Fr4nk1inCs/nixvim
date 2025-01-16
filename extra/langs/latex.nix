@@ -39,7 +39,7 @@ in {
         executable = "latexmk";
         args = [
           "-pdf"
-          "-xelatex"
+          # "-xelatex"
           "-interaction=nonstopmode"
           "-synctex=1"
           "%f"
